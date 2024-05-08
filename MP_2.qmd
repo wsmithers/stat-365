@@ -1,0 +1,39 @@
+---
+title: "MP_02_datavis"
+format: html
+editor: visual
+self-contained: true
+author: "William Smithers"
+---
+
+#*Mini-Project 2: Data Visualization*
+
+
+```{r setup}
+library(tidyverse)
+library(readr)
+taylor_songs <- read_csv("~/Downloads/taylor_all_songs.csv")
+```
+
+```{r}
+filtered_songs <- taylor_songs %>%
+  filter(ep == FALSE, bonus_track == FALSE, is.na(promotional_release), is.na(single_release))
+
+album_means <- filtered_songs %>%
+  group_by(album_name) %>%
+  summarise(mean_acousticness = mean(acousticness, na.rm = TRUE),
+            mean_danceability = mean(danceability, na.rm = TRUE))
+
+ggplot(album_means, aes(x = mean_acousticness, y = mean_danceability, label = album_name, color = album_name)) +
+  geom_point() +
+  geom_text(nudge_x = 0.01, nudge_y = 0.01, check_overlap = TRUE) +
+  geom_smooth(method = "lm", se = FALSE, color = "blue") +
+  labs(title = "Relationship Between Mean Acousticness and Mean Danceability (Albums)",
+       x = "Mean Acousticness",
+       y = "",
+       subtitle = "Mean Danceability") +
+  theme_minimal() +
+  scale_color_viridis_d()+
+  theme(legend.position = "none")
+```
+
