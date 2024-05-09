@@ -1,6 +1,8 @@
 ---
 title: "MP_02_datavis"
 format: html
+code-fold: true
+warning: false
 editor: visual
 self-contained: true
 author: "William Smithers"
@@ -9,7 +11,7 @@ author: "William Smithers"
 #*Mini-Project 2: Data Visualization*
 
 
-```{r setup}
+```{r setup, echo=FALSE, include=FALSE}
 library(tidyverse)
 library(readr)
 taylor_songs <- read_csv("~/Downloads/taylor_all_songs.csv")
@@ -24,16 +26,24 @@ album_means <- filtered_songs %>%
   summarise(mean_acousticness = mean(acousticness, na.rm = TRUE),
             mean_danceability = mean(danceability, na.rm = TRUE))
 
+cor_coefficient <- cor(album_means$mean_acousticness, album_means$mean_danceability, use = "complete.obs")
+
 ggplot(album_means, aes(x = mean_acousticness, y = mean_danceability, label = album_name, color = album_name)) +
   geom_point() +
-  geom_text(nudge_x = 0.01, nudge_y = 0.01, check_overlap = TRUE) +
+  geom_text(nudge_x = 0.01, nudge_y = 0.01, check_overlap = FALSE) +
   geom_smooth(method = "lm", se = FALSE, color = "blue") +
   labs(title = "Relationship Between Mean Acousticness and Mean Danceability (Albums)",
        x = "Mean Acousticness",
        y = "",
        subtitle = "Mean Danceability") +
   theme_minimal() +
-  scale_color_viridis_d()+
-  theme(legend.position = "none")
+#  scale_color_viridis_d(option = "bviridis")+
+  theme(legend.position = "none",
+        panel.background = element_rect(fill = "grey94"),
+        panel.grid.major = element_blank(),
+        panel.grid.minor = element_blank())+
+  annotate("text", x = min(album_means$mean_acousticness), y = min(album_means$mean_danceability) - 0.05, 
+           label = paste("Correlation Coefficient: ", round(cor_coefficient, 2)), 
+           hjust = 0, size = 3.5, color = 'darkblue')
 ```
 
