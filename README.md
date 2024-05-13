@@ -1,2 +1,4 @@
 # stat-365
-Repo for STAT365 Spring '24
+
+**Here we will put information regarding our project.**\
+Instructions for the README file is posted on the project page.
