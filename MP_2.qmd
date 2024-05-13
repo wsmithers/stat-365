@@ -45,5 +45,6 @@ ggplot(album_means, aes(x = mean_acousticness, y = mean_danceability, label = al
   annotate("text", x = min(album_means$mean_acousticness), y = min(album_means$mean_danceability) - 0.05, 
            label = paste("Correlation Coefficient: ", round(cor_coefficient, 2)), 
            hjust = 0, size = 3.5, color = 'darkblue')
+
 ```
 
