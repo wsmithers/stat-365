@@ -4,10 +4,55 @@ format: pdf
 editor: source
 ---
 
+```{r}
+library(tidyverse)
+library(ggplot2)
+```
+
 ## Importing data into R
+
+```{r}
+taylor_album_songs <- read_csv("/Users/donyabehroozi/Downloads/taylor_album_songs.csv")
+taylor_ratings <- read_csv("/Users/donyabehroozi/Desktop/stat365/stat-365/taylor_albums.csv")
+```
 
 ## Merging data sets together
 
+```{r}
+taylor_albums_joined <- taylor_album_songs |>
+  left_join(taylor_ratings, by = c("album_name", ep = "ep", album_release = "album_release"))
+
+head(taylor_albums_joined)
+```
+
 #Linear regression analysis (danceability vs. user scores)
+
+```{r}
+plot(danceability~user_score, data = taylor_albums_joined)
+taylor.fit1=lm(danceability~user_score, data = taylor_albums_joined)
+abline(taylor.fit1, col="blue")
+```
+
+# Hypotheses
+
+$H_0$: Audience rating is not linearly associated with danceability score.
+
+$H_A$: Audience rating is linearly associated with danceability score.
+
+# Checking simple linear regression assumptions
+
+```{r}
+par(mfrow=c(1,3))
+plot(resid(taylor.fit1)~fitted(taylor.fit1), xlab='Fitted', ylab='Residuals');abline(h=0,lty=2)
+qqnorm(resid(taylor.fit1),ylab='Residuals'); qqline(resid(taylor.fit1),lty=2)
+hist(resid(taylor.fit1),main="", xlab="Residuals",col='lightblue')
+```
+
+# Results and conclusion
+
+```{r}
+summary(taylor.fit1)
+```
+Given the very small p-value (close to 0) we have strong evidence to reject the null hypothesis. Therefore, we have sufficient evidence to claim that audience rating is linearly associated with danceability score for this population.
 
 #Linear regression analysis (danceability vs. metacritic scores)
