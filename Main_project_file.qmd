@@ -1,26 +1,13 @@
 ---
 title: "Main_project_file"
 format: pdf
-editor: visual
+editor: source
 ---
 
-## Quarto
+## Importing data into R
 
-Quarto enables you to weave together content and executable code into a finished document. To learn more about Quarto see <https://quarto.org>.
+## Merging data sets together
 
-## Running Code
+#Linear regression analysis (danceability vs. user scores)
 
-When you click the **Render** button a document will be generated that includes both content and the output of embedded code. You can embed code like this:
-
-```{r}
-1 + 1
-```
-
-You can add options to executable code like this
-
-```{r}
-#| echo: false
-2 * 2
-```
-
-The `echo: false` option disables the printing of code (only output is displayed).
+#Linear regression analysis (danceability vs. metacritic scores)
