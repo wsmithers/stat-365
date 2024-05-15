@@ -1,6 +1,8 @@
 ---
 title: "Main_project_file"
-format: pdf
+format: 
+  pdf:
+    fig-pos: "H"
 editor: source
 ---
 
@@ -25,7 +27,7 @@ taylor_albums_joined <- taylor_album_songs |>
 head(taylor_albums_joined)
 ```
 
-#Linear regression analysis (danceability vs. user scores)
+# Linear regression analysis (danceability vs. user scores)
 
 ```{r}
 plot(danceability~user_score, data = taylor_albums_joined)
@@ -55,4 +57,4 @@ summary(taylor.fit1)
 ```
 Given the very small p-value (close to 0) we have strong evidence to reject the null hypothesis. Therefore, we have sufficient evidence to claim that audience rating is linearly associated with danceability score for this population.
 
-#Linear regression analysis (danceability vs. metacritic scores)
+# Linear regression analysis (danceability vs. metacritic scores)
