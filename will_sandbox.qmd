@@ -1,0 +1,46 @@
+---
+title: "sandbox"
+author: "Will Smithers"
+format: html
+editor: visual
+self-contained: true
+---
+
+#**Code Sandbox**
+
+```{r}
+library(readr)
+library(tidyverse)
+library(readxl)
+taylor_albums <- read_csv("taylor_albums.csv")
+taylor_album_songs <- read_excel("~/Downloads/taylor_album_songs.xlsx")
+
+```
+
+##Dataset Join
+
+```{r}
+taylor_joined <- taylor_album_songs %>%
+  left_join(taylor_albums, by = "album_name")
+```
+
+##Visualization 1
+```{r}
+taylor_joined <- taylor_joined %>%
+  mutate(danceability = as.numeric(danceability))
+
+avg_scores_danceability <- taylor_joined %>%
+  group_by(album_name) %>%
+  summarise(avg_user_score = mean(user_score, na.rm = TRUE),
+            avg_danceability = mean(danceability, na.rm = TRUE))
+
+ggplot(avg_scores_danceability, aes(x = avg_danceability, y = avg_user_score)) +
+  geom_point() +
+  geom_smooth(method = "lm") +
+  geom_text(aes(label = album_name), vjust = -0.5) +
+  labs(title = "Average User Score vs. Average Danceability for Each Album",
+       x = "Average Danceability",
+       y = "Average User Score") +
+  theme_minimal()
+```
+
