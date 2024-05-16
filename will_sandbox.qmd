@@ -6,7 +6,7 @@ editor: visual
 self-contained: true
 ---
 
-#**Code Sandbox**
+\#**Code Sandbox**
 
 ```{r}
 library(readr)
@@ -25,6 +25,7 @@ taylor_joined <- taylor_album_songs %>%
 ```
 
 ##Visualization 1
+
 ```{r}
 taylor_joined <- taylor_joined %>%
   mutate(danceability = as.numeric(danceability))
@@ -43,4 +44,3 @@ ggplot(avg_scores_danceability, aes(x = avg_danceability, y = avg_user_score)) +
        y = "Average User Score") +
   theme_minimal()
 ```
-
