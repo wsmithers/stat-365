@@ -58,3 +58,31 @@ summary(taylor.fit1)
 Given the very small p-value (close to 0) we have strong evidence to reject the null hypothesis. Therefore, we have sufficient evidence to claim that audience rating is linearly associated with danceability score for this population.
 
 # Linear regression analysis (danceability vs. metacritic scores)
+
+```{r}
+plot(danceability~metacritic_score, data = taylor_albums_joined)
+taylor.fit2=lm(danceability~metacritic_score, data = taylor_albums_joined)
+abline(taylor.fit2, col="blue")
+```
+
+
+# Hypotheses
+
+$H_0$: Metacritic rating is not linearly associated with danceability score.
+
+$H_A$: Metacritic rating is linearly associated with danceability score.
+
+# Checking simple linear regression assumptions
+
+```{r}
+par(mfrow=c(1,3))
+plot(resid(taylor.fit2)~fitted(taylor.fit2), xlab='Fitted', ylab='Residuals');abline(h=0,lty=2)
+qqnorm(resid(taylor.fit2),ylab='Residuals'); qqline(resid(taylor.fit2),lty=2)
+hist(resid(taylor.fit2),main="", xlab="Residuals",col='lightblue')
+```
+
+# Results and conclusion
+
+```{r}
+summary(taylor.fit2)
+```
