@@ -86,3 +86,12 @@ hist(resid(taylor.fit2),main="", xlab="Residuals",col='lightblue')
 ```{r}
 summary(taylor.fit2)
 ```
+
+## Summary statistics table
+
+```{r}
+taylor_albums_joined |>
+  group_by(album_name) |>
+  summarise(mean_dance = mean(danceability), sd_dance = sd(danceability), mean_user = mean(user_score), mean_critic = mean(metacritic_score))
+```
+
