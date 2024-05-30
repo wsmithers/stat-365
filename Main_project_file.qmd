@@ -1,14 +1,13 @@
 ---
 title: "Main_project_file"
-format: 
-  pdf:
-    fig-pos: "H"
+format: html
 editor: source
 ---
 
 ```{r}
 library(tidyverse)
 library(ggplot2)
+library(knitr)
 ```
 
 ## Importing data into R
@@ -132,8 +131,10 @@ confint(taylor.fit2, level = 0.95)
 
 ```{r}
 taylor_albums_joined |>
-  arrange(album_release) |>
   group_by(album_name) |>
-  summarise(mean_dance = mean(danceability), sd_dance = sd(danceability), mean_user = mean(user_score), mean_critic = mean(metacritic_score))
+  summarise(mean_dance = mean(danceability, na.rm = TRUE), sd_dance = sd(danceability, na.rm = TRUE), mean_user = mean(user_score), mean_critic = mean(metacritic_score)) |>
+  arrange(desc(mean_dance)) |>
+  rename("Album Name" = album_name, "Mean Danceability" = mean_dance, "Standard dev. Danceability"= sd_dance, "Mean User Score" = mean_user, "Mean Critic Score" = mean_critic) |>
+  kable(align = "lcccc", digits = 2)
 ```
 
