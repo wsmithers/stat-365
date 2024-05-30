@@ -14,8 +14,8 @@ library(ggplot2)
 ## Importing data into R
 
 ```{r}
-taylor_album_songs <- read_csv("/Users/donyabehroozi/Downloads/taylor_album_songs.csv")
-taylor_ratings <- read_csv("/Users/donyabehroozi/Desktop/stat365/stat-365/taylor_albums.csv")
+taylor_album_songs <- read_csv("/Users/donyabehroozi/Desktop/stat365/stat-365/data/taylor_album_songs.csv")
+taylor_ratings <- read_csv("/Users/donyabehroozi/Desktop/stat365/stat-365/data/taylor_albums.csv")
 ```
 
 ## Merging data sets together
@@ -30,9 +30,27 @@ head(taylor_albums_joined)
 # Linear regression analysis (danceability vs. user scores)
 
 ```{r}
-plot(danceability~user_score, data = taylor_albums_joined)
 taylor.fit1=lm(danceability~user_score, data = taylor_albums_joined)
-abline(taylor.fit1, col="blue")
+
+taylor_albums_joined |>
+  ggplot(aes(x = user_score, y = danceability)) +
+  geom_point(size = 2, shape = 1) +
+  geom_smooth(method = "lm") +
+  labs(title = "Scatter Plot of Danceability vs. User Score", x = "User Score", y = " ", subtitle = "Danceability") +
+  theme_light() +
+  theme(plot.title = element_text(face = "bold")) +
+  annotate(geom = "label",
+           x = 8.75,
+           y = 0.7,
+           label = "Regression line") +
+  annotate(geom = "segment",
+           x = 8.75,
+           y = 0.68,
+           xend = 8.75,
+           yend = 0.61,
+           arrow = arrow(length = unit(0.15, "inches"))) +
+  scale_y_continuous(breaks = c(0.2, 0.4, 0.6,  0.8, 1.0))
+
 ```
 
 # Hypotheses
@@ -60,9 +78,8 @@ Given the very small p-value (close to 0) we have strong evidence to reject the 
 # Linear regression analysis (danceability vs. metacritic scores)
 
 ```{r}
-plot(danceability~metacritic_score, data = taylor_albums_joined)
 taylor.fit2=lm(danceability~metacritic_score, data = taylor_albums_joined)
-abline(taylor.fit2, col="blue")
+
 ```
 
 
@@ -91,6 +108,7 @@ summary(taylor.fit2)
 
 ```{r}
 taylor_albums_joined |>
+  arrange(album_release) |>
   group_by(album_name) |>
   summarise(mean_dance = mean(danceability), sd_dance = sd(danceability), mean_user = mean(user_score), mean_critic = mean(metacritic_score))
 ```
