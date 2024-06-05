@@ -1,32 +1,22 @@
 ---
-title: "results"
+title: "Results"
 format: html
 editor: source
+code-fold: true
 ---
 
-## Results of analyses as follows
 
 ```{r}
+#| echo: false
 library(tidyverse)
 library(ggplot2)
 library(knitr)
 ```
 
-## Importing data into R
 
 ```{r}
-taylor_album_songs <- read_csv("data/data_raw/taylor_album_songs.csv")
-taylor_ratings <- read_csv("data/data_raw/taylor_albums.csv")
-```
-
-
-## Merging data sets together
-
-```{r}
-taylor_albums_joined <- taylor_album_songs |>
-  left_join(taylor_ratings, by = c("album_name", ep = "ep", album_release = "album_release"))
-
-head(taylor_albums_joined)
+#| echo: false
+taylor_albums_joined <- read_csv("/Users/donyabehroozi/Desktop/stat365/stat-365/data/taylor_albums_joined.csv")
 ```
 
 # Linear regression analysis (danceability vs. user scores)
