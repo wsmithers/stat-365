@@ -1,0 +1,55 @@
+---
+title: "original_rqs"
+format: html
+editor: source
+---
+
+## Our original research questions are as follows
+
+1. Evolution of Musical Style Over Time:
+
+Data set: taylor_album_songs.csv
+
+Variables: Spotify attributes (e.g., danceability, valence), album release dates.
+
+Method: Time-series analysis, clustering to identify musical style shifts.
+
+Hypotheses: H0: There is not a statistically significant relationship between danceability,  acousticness, and time. 
+Ha: There is a statistically significant relationship between danceability,  acousticness, and time
+   
+   
+2. What is the relationship between danceability and acousticness of Taylor Swift songs?
+
+Data set: taylor_album_songs.csv
+
+Variables: Acousticness (x), danceability (y)
+
+Method: (1) Create scatter plot of danceability vs. acousticness with ggplot2, (2) Fit linear regression model between the variables “danceability ” and “acousticness”, (3) Check assumptions of the simple linear regression, (4) Test whether there is a statistically significant relationship between danceability and acousticness scores.
+
+Hypotheses: H0: There is not a statistically significant relationship between danceability and acousticness. 
+Ha: There is a statistically significant relationship between danceability and acousticness.
+
+
+3. As Swift’s career progresses, does her music’s critical reception match their popular appeal?
+
+Data set: taylor_albums.csv
+
+Variables: metacritic_score, user_score, album_release
+
+Method: (1) Create two scatter plots, mapping the critic and user scores on album release, (2) check assumptions of regression, (3) fit linear regression on each plot, (4) compare p-values.
+
+Hypothesis: H0: There is not a statistically significant change over time between the critic and audience scores.  
+Ha: There is a statistically significant change over time between the critic and audience scores
+
+## Our analysis for the final report will be:
+
+3. Association between danceability and Metacritic/User scores?
+
+Data set: merge taylor_albums.csv and taylor_album_songs.csv
+
+Variables: metacritic_score, user_score, danceability, album_name, album_release
+
+Method: (1) Create two scatter plots of danceability vs. user score and danceability vs. metacritic score (2) check assumptions of simple linear regression, (3) fit linear regression on each plot, (4) compare p-values of t-test on slopes of metacritic score and user score.
+
+Hypothesis: H0: There is not a linear association between danceability and user score/metacritic score.
+Ha: There is a a linear association between danceability and user score/metacritic score.
