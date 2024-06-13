@@ -14,7 +14,7 @@ Contains the raw, unedited files `taylor_album_songs.csv` and `taylor_albums.csv
 
 `documents`:
 
-Contains written documents associated with this project including our data proposal (`stat365group7datadesc+contract.pdf`), original research questions (`original_rqs`), mini projects (`MP_2`), and rough draft (`stat365roughdraft.pdf`).
+Contains written documents associated with this project including our data proposal (`stat365group7datadesc+contract.pdf`), original research questions (`original_rqs`), mini projects (`MP_2`), rough draft (`stat365roughdraft.pdf`), and a document tracking the revisions we made to our original rough draft for the final draft (`Doc of Rough Draft Revisions.pdf`)
 
 `results`:
 
